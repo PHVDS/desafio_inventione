@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link data-require="bootstrap@3.3.7" data-semver="3.3.7" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<script data-require="jquery@*" data-semver="3.1.1" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script data-require="angular.js@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+	<link rel="stylesheet" href="style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<form id="upusuario" class="form-inline">
+		<div class="content-wrap">
+			<div class="jumbotron">
+				<p>Teste Inventione</p>
+				<h1>Paulo Henrique Vieira</h1>
+			</div>
+		</div>
+
+
+		<div id="nome">
+			<div class="form-group row" class="col-xs-3">
+				<label>Nome:</label>
+				<input type="text" itemid="Nome" class="form-control" placeholder="Digite seu nome" required="required" name="nome"
+				 maxlength="50">
+
+				<div id="data" class="form-group row" class="col-xs-3">
+					<label> Data:</label>
+					<input required="required" itemid="Data" type="date" class="form-control" name="dia">
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+		<div id="idade">
+			<div class="form-group row" class="col-xs-3">
+				<label>Idade:</label>
+				<input required="required" itemid="Idade" type="text" class="form-control" placeholder="Digite sua idade" name="idade"
+				 maxlength="3">
+			</div>
+		</div>
+
+		<br>
+		<div id="sexo">
+			<fieldset class="form-group">
+				<div class="row">
+					<label class="col-form-label  col-sm-2 pt-0">Sexo:</label>
+					<div class="col-sm-10">
+						<div class="form-check">
+							<input class="form-check-input" required="required" type="radio" name="gridRadios" value="Masculino">
+							<label class="form-check-label" for="Radios1">
+								Masculino
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="gridRadios" value="Feminino">
+							<label class="form-check-label" for="Radios2">
+								Feminino
+							</label>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+
+		<br>
+
+		<div class="container">
+			<div class="col-md-4">
+				<div ng-app="">
+					<label>
+						
+						<input type="checkbox" class="label-text" onclick="mudarEstado('hide')"/> Habilitar Segundo Painel
+								
+						<div class="form-group" id="hide" style="display: none">
+							<textarea id="txt" onkeyup="contarPalavra(this.value)" placeholder="Este campo receberá um texto de até 10.000 caracteres"
+							 maxlength="10000" class="form-control" rows="5" cols="67"></textarea>
+							
+							<input type="text" id="quantidade2" size="15" placeholder="Total de Palavra(s)"/>
+							
+							<div class="tamanho">
+								<button id="pos1" type="submit" onclick="funcaoJquery()" class="btn btn-info btn-lg btn-block">Apresentar</button>
+							</div>
+							<textarea id="textoArea" maxlength="1000" class="form-control" rows="2" cols="67"></textarea>
+						</div>
+					</label>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<!--src="script.js"-->
+	<script>
+		$(function () {
+			var regex = new RegExp('[^ 0-9a-zA-Zàèìòùáéíóúâêîôûãõ\b-]', 'g');
+			$("#txt").on('input', function () {
+				$(this).val($(this).val().replace(regex, ''));
+			});
+		});
+		
+		function contarPalavra(valor) {
+			valor.replace(/(\r\n|\n|\r)/g, " ").trim();
+			var cont = valor.split(/\s+/g).length - 1;
+
+			if (cont == "1" || cont == "0") {
+				document.getElementById("quantidade2").value = cont + " Palavra";
+			} else {
+				document.getElementById("quantidade2").value = cont + " Palavras";
+			}
+		}
+
+		funcaoJquery = function () {
+			$('#upusuario').on('submit', function (e) {
+				var resultado = $('#textoArea');
+				var Nome = this.nome.value;
+				var Data = this.dia.value;
+				var Idade = this.idade.value;
+				var sexo = ($("input[name='gridRadios']:checked").val());
+				e.preventDefault();
+				resultado.text(Nome + '\n' + Data + '\n' + Idade + '\n' + sexo);
+			});
+		}
+
+		$(document).ready(function () {
+			$("#pos1").click(function () {
+				$("#textoArea").slideToggle("slow");
+			});
+		});
+
+		function mudarEstado(me) {
+        var display = document.getElementById(me).style.display;
+        if(display == "none")
+            document.getElementById(me).style.display = 'block';
+        else
+            document.getElementById(me).style.display = 'none';
+    }
+	</script>
+</body>
+
+</html>

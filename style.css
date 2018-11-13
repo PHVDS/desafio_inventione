@@ -1,0 +1,72 @@
+/* Suas estilizações */
+
+.content-wrap {
+  width: 640px;
+  margin: auto;
+}
+
+.content-wrap div {
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+.content-wrap h1 {
+	text-align: center;
+	color: white;
+}
+.jumbotron{
+	font-family: Tahoma;
+	padding: 10px;
+	height: 150px;
+	background-color: blue;
+}
+
+label{
+	font-family: verdana;
+}
+
+#nome{
+	margin-left: 370px;
+}
+
+#idade{
+	margin-left: 370px;
+}
+#sexo{
+	margin-left: 356px;
+}
+
+#data{
+	margin-left: 171px;
+}
+
+.col-sm-10{
+	padding-left: 33px;
+}
+
+.container {
+	padding-left: 245px;
+}
+
+.form-group button{
+    text-align: center;
+    background-color: blue;
+    border: solid 1px #c3c3c3;
+}
+
+#textoArea {
+    padding: 13px;
+    text-align: left;
+    background-color: whitesmoke;
+	border: solid 1px #c3c3c3;
+	display: none;
+}
+
+.form-group textarea{
+	border: solid 1px #1b1616;
+	background-color: whitesmoke;
+}
+
+.tamanho{
+	width: 237%;
+}
